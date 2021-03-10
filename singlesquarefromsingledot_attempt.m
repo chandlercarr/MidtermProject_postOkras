@@ -1,3 +1,5 @@
+%%% MAKES A GREEN SQUARE @ CENTER OF SCREEN%%% 
+
 % Clear the workspace and the screen
 sca;
 close all;
@@ -29,7 +31,7 @@ black = BlackIndex(screenNumber);
 
 % Open an on screen window and color it black.
 % For help see: Screen OpenWindow?
-[window, windowRect] = PsychImaging('OpenWindow', screenNumber, black);
+[window, windowRect] = PsychImaging('OpenWindow', screenNumber, white);
 
 % Get the size of the on screen window in pixels.
 % For help see: Screen WindowSize?
@@ -38,35 +40,29 @@ black = BlackIndex(screenNumber);
 % Get the centre coordinate of the window in pixels
 % For help see: help RectCenter
 [xCenter, yCenter] = RectCenter(windowRect);
+ 
+%   CHANGES DIMENSIONS OF RECTANGLE!   % 
+baseRect = [0 10 100 200];
 
-% Enable alpha blending for anti-aliasing
-% For help see: Screen BlendFunction?
-% Also see: Chapter 6 of the OpenGL programming guide
-Screen('BlendFunction', window, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+% NOT EXACTLY SURE WHAT THIS DOES % 
+centeredRect = CenterRectOnPointd(baseRect, xCenter, yCenter);
 
-% Set the color of our dot to full red. Color is defined by red green
-% and blue components (RGB). So we have three numbers which
-% define our RGB values. The maximum number for each is 1 and the minimum
-% 0. So, "full red" is [1 0 0]. "Full green" [0 1 0] and "full blue" [0 0
-% 1]. Play around with these numbers and see the result.
-dotColor = [0 1 0]; %%%%[red green blue]
 
+%  COLOR  % 
+
+%  Color is defined by red green and blue components (RGB)
+%       --> have three numbers which define our RGB values
+% max number = 1  min = 0 
+
+rectColor = [0 1 1]; %%%%[red green blue]
+
+Screen('FillRect', window, rectColor, centeredRect);
 % Determine a random X and Y position for our dot. NOTE: As dot position is
 % randomised each time you run the script the output picture will show the
 % dot in a different position. Similarly, when you run the script the
 % position of the dot will be randomised each time. NOTE also, that if the
-% dot is drawn at the edge of the screen some of it might not be visible.
-dotXpos = rand * screenXpixels;
-dotYpos = rand * screenYpixels;
-
-% Dot size in pixels
-dotSizePix = 50;
-
-% Draw the dot to the screen. For information on the command used in
-% this line type "Screen DrawDots?" at the command line (without the
-% brackets) and press enter. Here we used good antialiasing to get nice
-% smooth edges
-Screen('DrawDots', window, [dotXpos dotYpos], dotSizePix, dotColor, [], 2);
+% dot is drawn at the edge of the screen some of it might not be
+% visible.sca
 
 % Flip to the screen. This command basically draws all of our previous
 % commands onto the screen. See later demos in the animation section on more
