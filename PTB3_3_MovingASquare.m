@@ -2,17 +2,19 @@
 sca;
 close all;
 clearvars;
-PsychDefaultSetup(2);
 Screen('Preference', 'SkipSyncTests',1);
+
+PsychDefaultSetup(2);
+
 screens = Screen('Screens');
 screenNumber = max(screens);
 
 white = WhiteIndex(screenNumber);
 black = BlackIndex(screenNumber);
 
-[window, windowRect] = PsychImaging('OpenWindow', screenNumber, white);
+[window, windowRect] = PsychImaging('OpenWindow', screenNumber, black);
 [screenXpixels, screenYpixels] = Screen('WindowSize', window);
-ifi = Screen('GetFlipInterval' , windowRect);
+ifi = Screen('GetFlipInterval', windowRect);
 
 baseRect = [0 0 200 200];
 rectColor = [1 0 1]; 
