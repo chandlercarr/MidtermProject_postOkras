@@ -1,9 +1,9 @@
-
 sca;
 close all;
 clearvars;
 PsychDefaultSetup(2);
 
+Screen('Preference', 'SkipSyncTests',1);
 % NEW LINE % 
 % RANDOM NUMBER GENERATOR ~ SEED
    % Newer syntax would be rng('shuffle') Look at the help function of rand "help rand" for more information
@@ -74,26 +74,21 @@ waitframes = 1;
 topPriorityLevel = MaxPriority(window);
 Priority(topPriorityLevel);
 
-% Loop the animation until a key is pressed
+% Loop the animation until a key is pressed !!!fa
 while ~KbCheck
 
     % Position of the square on this frame
     gridPos = amplitude * sin(angFreq * time + startPhase);
 
-    % Draw all of our dots to the screen in a single line of code adding
-    % the sine oscilation to the X coordinates of the dots
+    % DRAW ALL DOTS ON SCREEN --> adding sine oscilation to X coordinates of the dots
     Screen('DrawDots', window, [xPosVector + gridPos; yPosVector],...
         dotSizes, dotColors, dotCenter, 2);
 
-    % Flip to the screen
+    % Flip to screen
     vbl  = Screen('Flip', window, vbl + (waitframes - 0.5) * ifi);
 
-    % Increment the time
+    % time increment
     time = time + ifi;
 
 end
-
-% Clear the screen. "sca" is short hand for "Screen CloseAll". This clears
-% all features related to PTB. Note: we leave the variables in the
-% workspace so you can have a look at them if you want.
 sca;
