@@ -3,7 +3,7 @@ close all;
 clearvars;
 PsychDefaultSetup(2);
 
-Screen('Preference', 'SkipSyncTests',1);
+Screen('Preference', 'SkipSyncTests',1); % !!!! 
 % NEW LINE % 
 % RANDOM NUMBER GENERATOR ~ SEED
    % Newer syntax would be rng('shuffle') Look at the help function of rand "help rand" for more information
